@@ -1,0 +1,46 @@
+-- Who are our most valuable customers?
+
+SELECT customer_name, SUM(sales) AS total_sales FROM superstore
+GROUP BY customer_name
+ORDER BY SUM(sales) DESC
+LIMIT 20;
+
+-- Which states generated the most revenue?
+
+SELECT state, SUM(sales) AS total_sales FROM superstore
+GROUP BY state
+ORDER BY SUM(sales) DESC
+LIMIT 20;
+
+-- Which products contributed the most to revenue?
+
+SELECT product_name, SUM(quantity) AS units_purchased, SUM(sales) AS total_sales FROM superstore
+GROUP BY product_name
+ORDER BY SUM(sales) DESC
+LIMIT 20;
+
+-- What is the total revenue for each category?
+
+SELECT category, SUM(sales) AS total_sales FROM superstore
+GROUP BY category
+ORDER BY SUM(sales) DESC
+LIMIT 20;
+
+-- Which segment had the highest sales?
+
+SELECT segment, SUM(sales) AS total_sales FROM superstore
+GROUP BY segment
+ORDER BY SUM(sales) DESC
+LIMIT 20;
+
+-- Can we predict revenue for 2015?
+
+SELECT order_date, SUM(sales) AS total_sales FROM superstore
+GROUP BY order_date
+ORDER BY order_date;
+
+-- How many customers have 5 or more orders?
+
+SELECT COUNT(customer_name), customer_name, SUM(quantity) FROM superstore
+WHERE quantity >= 5
+GROUP BY customer_name
